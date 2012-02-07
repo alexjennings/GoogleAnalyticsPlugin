@@ -1,11 +1,11 @@
 from portal.pluginbase.core import *
 from portal.generic.plugin_interfaces import IPluginURL, IPluginBlock
-from models import GoogleAnalyticsSettings
+from django.template import loader, Context
 import logging
 log = logging.getLogger(__name__)
 
 class AnalyticsPluginURL(Plugin):
-    """ Adds extra URLS for the testapp plugin.
+    """ Adds extra URLS for the Google Analytics plugin
     """
     implements(IPluginURL)
     
@@ -29,23 +29,24 @@ class AnalyticsPluginBlock(Plugin):
         self.plugin_guid = "7DA4A359-6794-47C7-A18C-4A80330B72D5"
         log.debug("Initiated AnalyticsPluginBlock")
 
-    def render_template(self):
+    def render_template(self, id):
         #Test to render a template
-        t = loader.get_template('navigation_admin.html')
-        c = Context()
+        t = loader.get_template('google_snippet.html')
+        c = Context({'google_id' : id})
         return t.render(c)
         
-
     def return_string(self, tagname, *args):
+        from models import GoogleAnalyticsSettings
+        ret = " "
         try:
             obj = GoogleAnalyticsSettings.objects.get(pk=1)
         except ObjectDoesNotExist:
-            ret = ""
-#        else:
-#            if obj.google_id and obj.google_id != "":
-#                pass
+            ret = " "
+        else:
+            if obj.google_id and obj.google_id != "":
+                ret = self.render_template(obj.google_id)
 
-        return {'guid':self.plugin_guid, 'template':'google_snippet.html' }
+        return {'guid':self.plugin_guid, 'template': ret }
 
 pluginblock = AnalyticsPluginBlock() 
 
@@ -57,12 +58,6 @@ class AnalyticsNavigationAdminPlugin(Plugin):
         self.name = "AnalyticsNavigationAdminPlugin"
         self.plugin_guid = "64993BE2-3FDC-4D75-8374-F6D8B5BABDB4"
         log.debug("Initiated AnalyticsNavigationAdminPlugin")
-
-    def render_template(self):
-        #Test to render a template
-        t = loader.get_template('navigation_admin.html')
-        c = Context()
-        return t.render(c)
         
     def return_string(self, tagname, *args):
         try:
