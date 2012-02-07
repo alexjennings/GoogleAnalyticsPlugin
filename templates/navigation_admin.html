@@ -1,0 +1,6 @@
+{% load i18n cache navbar %}
+
+{% if user|has_role:"_administrator" %}
+    <li><a href="{% url analytics_settings %}" title="{% trans "Google Analytics" %}">{% trans "Google Analytics" %}</a></li>
+{% endif %}
+

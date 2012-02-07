@@ -1,0 +1,17 @@
+{% themeextends "admin/base_admin.html" %}
+{% load i18n %}
+{% block title %}{% trans 'Google Analytics' %}{% endblock %}
+{% block heading %}{% trans 'Google Analytics' %} {% endblock heading %}
+{% block content %}
+    <div class="itemcontent">
+      <form action="{% url analytics_settings %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+
+        <input type="Submit"/>
+
+      </form>
+    </div><!-- /itemcontent-->
+{% endblock content %}
+
