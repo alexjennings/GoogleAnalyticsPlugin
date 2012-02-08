@@ -55,7 +55,7 @@ class AnalyticsNavigationAdminPlugin(Plugin):
     implements(IPluginBlock)
 
     def __init__(self):
-        self.name = "AnalyticsNavigationAdminPlugin"
+        self.name = "NavigationAdminPlugin"
         self.plugin_guid = "64993BE2-3FDC-4D75-8374-F6D8B5BABDB4"
         log.debug("Initiated AnalyticsNavigationAdminPlugin")
         
@@ -66,6 +66,6 @@ class AnalyticsNavigationAdminPlugin(Plugin):
         except:
             # fallback to sand theme
             theme = 'sand'
-        return {'guid':self.plugin_guid, 'template':'navigation_admin.html' }
+        return {'guid':self.plugin_guid, 'template':'analytics_navigation_admin.html' }
 
 pluginblock = AnalyticsNavigationAdminPlugin() 
