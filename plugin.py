@@ -5,6 +5,7 @@
 from portal.pluginbase.core import *
 from portal.generic.plugin_interfaces import IPluginURL, IPluginBlock
 from django.template import loader, Context
+from django.core.exceptions import ObjectDoesNotExist
 import logging
 log = logging.getLogger(__name__)
 
