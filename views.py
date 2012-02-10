@@ -1,4 +1,7 @@
-# Create your views here.
+"""
+.. Copyright 2012 Cantemo AB. All Rights Reserved
+"""
+
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from portal.generic.baseviews import ClassView
@@ -15,19 +18,21 @@ class GoogleAnalyticsView(ClassView):
     def __call__(self):
         log.debug("%s View GoogleAnalyticsView" % self.request.user)
         ctx = {}
+        # Workaround for django lacking a singleton model. Always access object with id=1
         try:
             obj = GoogleAnalyticsSettings.objects.get(pk=1)
         except ObjectDoesNotExist:
             obj = GoogleAnalyticsSettings(id=1)
             obj.save()
-            
+
         if self.request.method == 'POST':
+            # If this is a POST it means the user pressed submit, so we update the database.
             form = GoogleAnalyticsForm(self.request.POST, instance=obj)
             if form.is_valid(): # All validation rules pass
                 ctx['form'] = form
                 form.save()
         else:
+            # Otherwise we show the form from the database
             ctx['form'] = GoogleAnalyticsForm(instance=obj)
-
 
         return self.main(self.request, self.template, ctx)

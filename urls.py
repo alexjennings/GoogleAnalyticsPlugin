@@ -1,7 +1,10 @@
+"""
+.. Copyright 2012 Cantemo AB. All Rights Reserved
+"""
+
 from django.conf.urls.defaults import *
 
-# place app url patterns here
-
+# We only have one url in this app
 urlpatterns = patterns('portal.plugins.GoogleAnalyticsPlugin.views',
-    url(r'^settings/$', 'GoogleAnalyticsView', kwargs={'template' : 'settings.html'} , name='analytics_settings'),
+    url(r'^settings/$', 'GoogleAnalyticsView', kwargs={'template' : 'analytics/settings.html'} , name='analytics_settings'),
 )

@@ -6,8 +6,8 @@
     <div class="itemcontent">
       <form action="{% url analytics_settings %}" method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
 
+        {{ form.as_p }}
 
         <input type="Submit"/>
 
