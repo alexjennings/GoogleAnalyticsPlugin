@@ -1,9 +1,17 @@
 This is an example app which implements Google Analytics.
 
-To install this plugin, just place the entire directory under
-portal/plugins in your portal installation.
+== Installation  ==
 
-It consists of three different plugins, all defined in plugins.py.
+To install this plugin, just place the entire directory under
+portal/plugins in your portal installation and then run
+
+python manage.py syncdb
+
+
+
+== What's in the plugin ==
+
+The app consists of three different plugins, all defined in plugins.py.
 
 * AnalyticsPluginURL 
 
