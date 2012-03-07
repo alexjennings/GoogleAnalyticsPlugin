@@ -37,13 +37,6 @@ class AnalyticsPluginBlock(Plugin):
         self.plugin_guid = "7DA4A359-6794-47C7-A18C-4A80330B72D5"
         log.debug("Initiated AnalyticsPluginBlock")
 
-    # Utility function to render the google template
-    def _render_template(self, id):
-        #Test to render a template
-        t = loader.get_template('analytics/google_snippet.html')
-        c = Context({'google_id' : id})
-        return t.render(c)
-        
     # Function called by the plugin framework. Returns the rendered template.
     def return_string(self, tagname, *args):
         from models import GoogleAnalyticsSettings
@@ -55,9 +48,9 @@ class AnalyticsPluginBlock(Plugin):
             ret = " "
         else:
             if obj.google_id and obj.google_id != "":
-                ret = self._render_template(obj.google_id)
+                ret = 'analytics/google_snippet.html'
 
-        return {'guid':self.plugin_guid, 'template': ret }
+        return {'guid':self.plugin_guid, 'template': ret, 'context' : {'google_id' : obj.google_id} }
 
 pluginblock = AnalyticsPluginBlock() 
 
