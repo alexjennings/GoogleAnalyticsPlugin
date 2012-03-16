@@ -4,7 +4,12 @@
 {% block heading %}{% trans 'Google Analytics' %} {% endblock heading %}
 {% block content %}
     <div class="itemcontent">
+      <div class="noticemessage">
+        <p>Enter your google analytics id (UA-... ) into the field below to enable tracking of your site usage.</p>
+      </div>
+
       <form action="{% url analytics_settings %}" method="POST">
+
         {% csrf_token %}
 
         {{ form.as_p }}

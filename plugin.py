@@ -55,7 +55,7 @@ class AnalyticsPluginBlock(Plugin):
 pluginblock = AnalyticsPluginBlock() 
 
 # Add an entry to the admin menu
-class AnalyticsNavigationAdminPlugin(Plugin):
+class AnalyticsAdminMenuPlugin(Plugin):
     
     implements(IPluginBlock)
 
@@ -69,4 +69,20 @@ class AnalyticsNavigationAdminPlugin(Plugin):
     def return_string(self, tagname, *args):
         return {'guid':self.plugin_guid, 'template':'analytics/navigation_admin.html' }
 
-pluginblock = AnalyticsNavigationAdminPlugin() 
+pluginblock = AnalyticsAdminMenuPlugin() 
+
+class AnalyticsAdminLeftPanePlugin(Plugin):
+    """ adds a menu item to the admin screen
+    """
+    implements(IPluginBlock)
+
+    def __init__(self):
+        self.name = "AdminLeftPanelBottomPanePlugin"
+        self.plugin_guid = "8B26B086-DD1C-4FF9-84CE-96E6985CE38E"
+
+    def return_string(self, tagname, *args):
+        return {'guid': self.plugin_guid, 'template': 'analytics/admin_leftpanel_pane.html'}
+
+pluginblock = AnalyticsAdminLeftPanePlugin()
+
+
