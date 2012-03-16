@@ -3,7 +3,7 @@ This is an example app which implements Google Analytics.
 == Installation  ==
 
 To install this plugin, just place the entire directory under
-portal/plugins in your portal installation and then run
+/opt/cantemo/portal/portal/plugins in your portal installation and then run
 
 python manage.py syncdb
 
