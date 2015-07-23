@@ -19,7 +19,7 @@ to install all the models followed by
   supervisorctl restart all
 ```
 
-to restart all
+to restart all processes.
 
 What's in the app
 -----------------
