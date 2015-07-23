@@ -9,11 +9,11 @@ Installation
 To install this plugin, just place the entire directory under
 /opt/cantemo/portal/portal/plugins in your portal installation and then run
 
-python manage.py syncdb
+  python manage.py syncdb
 
 to install all the models followed by
 
-supervisorctl restart all
+  supervisorctl restart all
 
 to restart all
 
