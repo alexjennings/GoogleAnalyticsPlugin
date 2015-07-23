@@ -17,7 +17,7 @@ class AnalyticsPluginURL(Plugin):
     
     def __init__(self):
         self.name = "Google Analytics Plugin"
-        self.urls = 'portal.plugins.googleanalytics.urls'
+        self.urls = 'portal.plugins.GoogleAnalyticsPlugin.urls'
         self.urlpattern = r'^analytics/'
         self.namespace = 'analytics',
         self.plugin_guid = '034A8676-F8B9-4946-BD82-0E78248F84A5'
