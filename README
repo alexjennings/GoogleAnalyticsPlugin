@@ -1,15 +1,24 @@
-This is an example app which implements Google Analytics.
+Google Analytics App
+====================
 
-== Installation  ==
+This is an example app which implements Google Analytics in Cantemo Portal.
+
+Installation
+------------
 
 To install this plugin, just place the entire directory under
 /opt/cantemo/portal/portal/plugins in your portal installation and then run
 
 python manage.py syncdb
 
+to install all the models followed by
 
+supervisorctl restart all
 
-== What's in the plugin ==
+to restart all
+
+What's in the app
+-----------------
 
 The app consists of three different plugins, all defined in plugins.py.
 
