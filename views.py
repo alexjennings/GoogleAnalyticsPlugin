@@ -16,6 +16,7 @@ class GoogleAnalyticsView(ClassView):
     """ Update the settings for the Google Analytics plugin
     """
     def __call__(self):
+        from django.core.cache import cache
         log.debug("%s View GoogleAnalyticsView" % self.request.user)
         ctx = {}
         # Workaround for django lacking a singleton model. Always access object with id=1
@@ -31,6 +32,7 @@ class GoogleAnalyticsView(ClassView):
             if form.is_valid(): # All validation rules pass
                 ctx['form'] = form
                 form.save()
+                cache.set('google_id', obj.google_id)
         else:
             # Otherwise we show the form from the database
             ctx['form'] = GoogleAnalyticsForm(instance=obj)
